@@ -25,9 +25,11 @@ app.post("/gift", (req, res) => {
   // format provided is an array with two entries
 
   let isInTheList = false;
+  let giftList = ["robot", "airplane", "boat", "doll"];
   isInTheList = verifyProof(body.proof, body.name, MERKLE_ROOT);
+  const gift = giftList[Math.floor(Math.random() * 4)];
   if (isInTheList) {
-    res.send(body.name + ", you got a toy robot!");
+    res.send(body.name + ", you got a toy " + gift + "!");
   } else {
     res.send(body.name + ", you are not on the list :(");
   }
