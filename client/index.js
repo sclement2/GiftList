@@ -1,7 +1,7 @@
 const fs = require("fs");
 const axios = require("axios");
-const niceList = require("../utils/niceList.json"); // Used to generate cases with no name provided
-const MerkleTree = require("../utils/MerkleTree"); // Used to generate cases with name or proof not provided
+const niceList = require("../utils/niceList.json"); // Used to generate cases with no name provided. Ideally the client would not have this information
+const MerkleTree = require("../utils/MerkleTree"); // Used to generate proof if it is not provided during input
 const e = require("express");
 
 const serverUrl = "http://localhost:1225";
@@ -14,7 +14,9 @@ async function main() {
   let leaves = niceList;
   let name = args[2] + " " + args[3];
 
-  /* used to generate some proofs to send. In general it should be assumed the user will actually provide a proof and not have access to the Nice List */
+  /* 
+  Used to generate some proofs to send. In general it should be assumed the user will actually provide a proof and not have access to the Nice List 
+  */
 
   if (args[2] === undefined) {
     // corresponds to no parameters passed as part of calling the client
@@ -22,7 +24,10 @@ async function main() {
     name = niceList[Math.floor(Math.random() * 1000)]; // pick a random name from the Nice List
     const index = niceList.findIndex((n) => n === name);
     const rnd = Math.floor(Math.random() * 10);
-    //console.log(rnd);
+
+    /*
+    add some variablity to the results produced. In some instances the proof will not be valid for the name selected
+    */
     if (rnd === 1) {
       proof = niceListTree.getProof(Math.floor(Math.random() * 1000));
       console.log("Fake proof");
@@ -32,42 +37,49 @@ async function main() {
     console.log('{ "name": "' + name + '",');
     console.log(('"proof": ' + JSON.stringify(proof)).toString() + " }\n");
   } else if (
+    // output usage info
     args[2].toLowerCase() == "help" ||
     args[2].toLowerCase() == "info"
   ) {
     console.log(
       "USAGE: \n" +
-        "client/index       <will generate random input that will match some percentage of the time>\n" +
-        "client/index name  <will match since the name is used to generate the correct proof>\n" +
-        "client/index name realProof1 <or> " +
-        "client/index name realProof2  \n<if name matches realProof1 or realProof2 then will be a match otherwise no match>\n" +
-        "client/index file  <use the input.json file as input for name and proof>\n" +
-        "client/index help  <generates this info>"
+        "- client/index       <will generate random input that will match some percentage of the time>\n" +
+        "- client/index name  <will match since the name is used to generate the correct proof>\n" +
+        "- client/index name realProof1 <or> client/index name realProof2  \n" +
+        "                     <if 'name' matches the proof stored as 'realProof1' or 'realProof2' then there will be a match otherwise no match>\n" +
+        "- client/index file  <use the input.json file as input for name and proof. example-input.json shows what input.json file should contain>\n" +
+        "- client/index help  <generates this info>"
     );
     process.exit(0);
   } else if (
     args[2].toLowerCase() == "file" ||
     args[2].toLowerCase() == "json"
   ) {
-    const fileText = fs.readFileSync("./client/input.json");
+    /*
+    Use a JSON file as input. This is the preferred (aka more realistic) method of running the program. User would provide the name and a proof to demonstrate the name is in the "nice list" so as to get a gift :-)
+    */
+    const fileText = fs.readFileSync("./client/input.json"); // this is the name and location of the required file
     const jsonParsed = JSON.parse(fileText);
-    //print JSON object
-    //console.log(jsonParsed.proof);
     name = jsonParsed.name;
     proof = jsonParsed.proof;
     console.log('{ "name": "' + name + '",');
     console.log(('"proof": ' + JSON.stringify(proof)).toString() + " }\n");
   } else if (args[4] === undefined) {
-    // corresponds to name being passed in but no proof
+    /* 
+    Corresponds to name being passed in but no proof. The proof produced will be valid since it is using the actual list. A real user would not have access to the list 
+    */
     const niceListTree = new MerkleTree(leaves);
     const index = niceList.findIndex((n) => n === name);
     proof = niceListTree.getProof(index);
     console.log('{ "name": "' + name + '",');
     console.log(('"proof": ' + JSON.stringify(proof)).toString() + " }\n");
   } else {
-    // Currently only two proofs defined for the names listed in the switch.
-    // The default option is a fake proof if proof name doesn't match any switch name
-    // The default switch case would correspond to a client with no access to the nice list
+    /* 
+    Currently only two proofs defined for the names listed in the switch.
+    The default option is a fake proof if proof name doesn't match any switch name
+    The default switch case would correspond to a client with no access to the nice list
+    This option works if you want to provide a proof but you haven't put the proof info in a file.
+     */
     switch (args[4]) {
       case "realProof1":
         //name = Veronica West;
@@ -215,11 +227,15 @@ async function main() {
   }
 
   const { data: gift } = await axios.post(`${serverUrl}/gift`, {
-    //request body parameters
+    /* 
+    request body parameters.
+    This is what info would be sent by someone to see if the selected name was on the list
+    */
     name,
     proof,
   });
 
+  // log the results to the console.
   console.log({ gift });
 }
 
