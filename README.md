@@ -61,7 +61,16 @@ There are a few files in utils:
 >node client/index Veronica West
 
 { "name": "Veronica West",
-"proof": [{"data":"a98832167ab72747b6d1330e4740677f753e33a69dfbaeb0243f85134e0ba4a0","left":false},{"data":"8496be5a9de04400a39a700a6b1ce0ba9846d43b155fc8e861b1ae148c16399a","left":false},{"data":"0a8f023b6a99d213cd7abd4ad13ac9f3f604f4442362184e0e148b36a9af8e98","left":false},{"data":"391bb4f633a1fe8e6d9fc118824ebf10301e4e76afa44628bc04b247d92424bc","left":false},{"data":"990c9b636a06c41c140e5ef9728d9eca2cef6c749c85145f7cf0aeb03fc533c2","left":true},{"data":"0feaf30b038a3cfd04589930e080eba54dd10e94cba3de5ff3324a722e4f9ee1","left":true},{"data":"3cf5c63e1a4d3682356096793cb02bf3842328a6d39f20e6a0214b45161e3638","left":false},{"data":"6b57c2680cf622d2e5c4d0abe967531b0a8b69ff2eff5e5b678c377729b812bf","left":false},{"data":"1a59f6ae0ef8790e30f6fff2f4ff961d2687942b497e464486655f57a09c7679","left":true},{"data":"3fe580aa5460ffc803ed4b0d8a1f4f1821128df06d6bc3e272621900424d8f68","left":true}] }
+"proof": [{"data":"a98832167ab72747b6d1330e4740677f753e33a69dfbaeb0243f85134e0ba4a0","left":false},
+{"data":"8496be5a9de04400a39a700a6b1ce0ba9846d43b155fc8e861b1ae148c16399a","left":false},
+{"data":"0a8f023b6a99d213cd7abd4ad13ac9f3f604f4442362184e0e148b36a9af8e98","left":false},
+{"data":"391bb4f633a1fe8e6d9fc118824ebf10301e4e76afa44628bc04b247d92424bc","left":false},
+{"data":"990c9b636a06c41c140e5ef9728d9eca2cef6c749c85145f7cf0aeb03fc533c2","left":true},
+{"data":"0feaf30b038a3cfd04589930e080eba54dd10e94cba3de5ff3324a722e4f9ee1","left":true},
+{"data":"3cf5c63e1a4d3682356096793cb02bf3842328a6d39f20e6a0214b45161e3638","left":false},
+{"data":"6b57c2680cf622d2e5c4d0abe967531b0a8b69ff2eff5e5b678c377729b812bf","left":false},
+{"data":"1a59f6ae0ef8790e30f6fff2f4ff961d2687942b497e464486655f57a09c7679","left":true},
+{"data":"3fe580aa5460ffc803ed4b0d8a1f4f1821128df06d6bc3e272621900424d8f68","left":true}] }
 
 { gift: 'Veronica West, you got a toy robot!' }
 ```
