@@ -1,0 +1,45 @@
+{
+  "name": "Marguerite Kris",
+  "proof": [
+    {
+      "data": "88adbef9c1610dea1ab98140109594b28d78ccc349321973ce313341280c8056",
+      "left": true
+    },
+    {
+      "data": "c6740db0cfe186f2829b7f911afa1d1a1ff82a335d9e7eff980c3c64ce8c95fd",
+      "left": true
+    },
+    {
+      "data": "4d6000a251a4f4a25de28fe53c0adeac38d05ba561a83374698283a0fd4b882f",
+      "left": true
+    },
+    {
+      "data": "8a801b381a1a09ae9a2db131601f739ab5ff1f2bf6bc5aea282269f3dcc7717b",
+      "left": false
+    },
+    {
+      "data": "a262d1a980cb6793bd87c7e1654c4da7bd7aa63c1149aa8d9c94fea203a82f40",
+      "left": false
+    },
+    {
+      "data": "7bfe678de065c0e84873b57badb6e85aaadd0ce27cb749d22d7a94e7222089cf",
+      "left": true
+    },
+    {
+      "data": "58b9e69cf3a1ef5657e28905452a2c3187e222fe469c5a1175a99ba452847c39",
+      "left": false
+    },
+    {
+      "data": "2bcb681b07aa7d308b06f8b74014f197bdc1cbc945c30a897ce7f3c11f8bb2c0",
+      "left": false
+    },
+    {
+      "data": "703f4207ff4f8efe8b62e80350739b7feea30e3b8eb518f3030adc8b4a22ec43",
+      "left": false
+    },
+    {
+      "data": "3fe580aa5460ffc803ed4b0d8a1f4f1821128df06d6bc3e272621900424d8f68",
+      "left": true
+    }
+  ]
+}
